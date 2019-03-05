@@ -1,2 +1,12 @@
 # csv-map-module
-Template to modify data fields from an input CSV and map it to a new output CSV
+
+##### Requirements
+
+* Node.js
+* npm
+
+##### Setup
+* Run `npm install`
+
+##### Execute
+* `node index.js <relative_path_to_import_csv> <relative_path_to_export_csv>`

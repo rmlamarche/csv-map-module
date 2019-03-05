@@ -1,0 +1,16 @@
+{
+  "name": "csv-map-module",
+  "version": "1.0.0",
+  "description": "Template to modify data fields from an input CSV and map it to a new output CSV",
+  "repository": "https://github.com/rmlamarche/csv-map-module.git",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan LaMarche",
+  "license": "MIT",
+  "dependencies": {
+    "csv-parse": "^4.3.3",
+    "csv-stringify": "^5.3.0"
+  }
+}
