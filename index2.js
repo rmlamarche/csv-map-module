@@ -26,36 +26,34 @@ let importFromCSV = () => {
       let obj = {};
       // for each row as 'o'
       inputData.forEach(d => {
-        if (d['Sizes'].length > 0) {
-          let handle = 'prom-dress-style-' + d['Style'].trim();
-          console.log(d['Sizes']);
-          let maxSize = d['Sizes'].split('-')[1].trim();
-          let colors = d['Colors'].split(',');
-          if (!obj[handle]) {
-            obj[handle] = {
-              'title': 'Prom Dress Style ' + d['Style'].trim(),
-              'vendor': 'Sherri Hill',
-              'type': 'Prom',
-              'variants': []
-            }
+        let handle = 'prom-dress-style-' + d['Style'].split('/')[0].trim();
+        let maxSize = d['Sizes'].split('/')[0].trim().split('-')[1].trim();
+        let colors = d['Colors'].split(',');
+        let price = d['Price'].split('/')[0].trim().split('$')[1].trim();
+        if (!obj[handle]) {
+          obj[handle] = {
+            'title': 'Prom Dress Style ' + d['Style'].trim(),
+            'vendor': 'Faviana',
+            'type': 'Prom',
+            'variants': []
           }
+        }
+        for (let color of colors) {
+          obj[handle]['variants'].push({
+            'size': '00',
+            'color': color,
+            'price': parseInt(price) * 2,
+            'SKU': d['Style'].split('/')[0].trim()
+          });
+        }
+        for (let size = 0; size <= maxSize; size += 2) {
           for (let color of colors) {
             obj[handle]['variants'].push({
-              'size': '00',
+              'size': size,
               'color': color,
-              'price': parseInt(d['Price']) * 2,
+              'price': parseInt(price) * 2,
               'SKU': d['Style'].split('/')[0].trim()
             });
-          }
-          for (let size = 0; size <= maxSize; size += 2) {
-            for (let color of colors) {
-              obj[handle]['variants'].push({
-                'size': size,
-                'color': color,
-                'price': parseInt(d['Price']) * 2,
-                'SKU': d['Style'].split('/')[0].trim()
-              });
-            }
           }
         }
       });
